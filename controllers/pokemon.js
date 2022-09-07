@@ -2,7 +2,7 @@ const configDB = require('../knexfile');
 const knex = require('knex')(configDB.development);
 
 const getAllPokemons = async () => {
-    let pokemonFinal = {datos_pokemon:{},  types:[]}
+    
     return knex 
     .column('id' , 'name' , 'weight','height' ,'description', 'image', 'hp', 'atk', 'def', 'satk','sdef', 'spd', 'type')
     .select()
@@ -13,7 +13,7 @@ const getPokemonById = async (id) =>{
     let pokemonFinal = {datos_pokemon:{}, moves:[], types:[]}
     await knex('pokemon')
     .where('id', id)
-    .select('name', 'id', 'weight', 'height', 'description', 'image', 'hp', 'atk', 'def', 'satk', 'sdef', 'spd')
+    .select('name', 'id', 'weight', 'height', 'description', 'image', 'hp', 'atk', 'def', 'satk', 'sdef', 'spd', 'type')
     .then((arrayDePokemon) => {
     return pokemonFinal['datos_pokemon'] = arrayDePokemon[0]
     })
